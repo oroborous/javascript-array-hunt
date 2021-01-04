@@ -1,15 +1,15 @@
 $(document).ready(function () {
-    var australianAnimals = ["bandicoot", "crocodile", "dingo", "echidna",
+    let australianAnimals = ["bandicoot", "crocodile", "dingo", "echidna",
         "frilled-dragon", "kangaroo", "koala", "ostrich", "platypus",
         "striped-possum", "tasmanian-devil", "wombat"];
-    var chineseFood = ["bao", "chow-mein", "dumplings", "egg-rolls",
+    let chineseFood = ["bao", "chow-mein", "dumplings", "egg-rolls",
         "fortune-cookies", "fried-rice", "gyoza", "lo-mein", "mapo-tofu",
         "ramen", "shumai", "wonton-soup"];
-    var dinosaurs = ["ankylosaurus", "brachiosaurus", "dilophosaurus",
+    let dinosaurs = ["ankylosaurus", "brachiosaurus", "dilophosaurus",
         "pachycelphalosaurus", "pterodactyl", "stegosaurus",
         "styracosaurus", "triceratops", "tyrannosaurus-rex",
         "velociraptor"];
-    var solarSystem = ["earth", "jupiter", "luna", "mars", "mercury",
+    let solarSystem = ["earth", "jupiter", "luna", "mars", "mercury",
         "neptune", "saturn", "sol", "uranus", "venus"];
 
     $("#imageSet").change(showAllImages);
@@ -19,21 +19,21 @@ $(document).ready(function () {
 
     function showAllImages() {
         // What image set was selected? This is the directory name
-        var directoryName = $("#imageSet").val();
+        let directoryName = $("#imageSet").val();
         // Based on the selection, use the correct array
-        var arrayOfImagesNames = getSelectedArray();
+        let arrayOfImagesNames = getSelectedArray();
 
         // Empty out any children from the div
-        var imageDiv = $("#originalArray").empty();
+        let imageDiv = $("#originalArray").empty();
 
         // Make two rows of images, half in each row
-        var half = arrayOfImagesNames.length / 2;
+        let half = arrayOfImagesNames.length / 2;
         // How many images are in the current row?
-        var count = 0;
+        let count = 0;
         // The current <div class="row">
-        var row;
+        let row;
 
-        for (var fileName of arrayOfImagesNames) {
+        for (let fileName of arrayOfImagesNames) {
             // Time to make a new row?
             if (count === 0 || count >= half) {
                 row = $("<div>").addClass("row");
@@ -49,13 +49,13 @@ $(document).ready(function () {
 
     function createImage(directory, fileName) {
         // Create a div with a Bootstrap class
-        var col = $("<div>").addClass("col");
+        let col = $("<div>").addClass("col");
         // Create a figure (can have a caption)
-        var figure = $("<figure>").addClass("figure");
+        let figure = $("<figure>").addClass("figure");
         col.append(figure);
 
         // Create the image itself
-        var img = $("<img>");
+        let img = $("<img>");
         img.attr("src", `${directory}/${fileName}.png`);
         img.attr("alt", fileName);
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
         figure.append(img);
 
         // Create a caption
-        var caption = $(`<figcaption>${fileName}</figcaption>`)
+        let caption = $(`<figcaption>${fileName}</figcaption>`)
             .addClass("figure-caption text-center");
         figure.append(caption);
 
@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     function getSelectedArray() {
         // Which image set was selected?
-        var selection = $("#imageSet").val();
+        let selection = $("#imageSet").val();
 
         // Return the array that corresponds to
         // the selected string
@@ -87,12 +87,17 @@ $(document).ready(function () {
     }
 
     function arrayHunt() {
-        var myArray = getSelectedArray();
+        let myArray = getSelectedArray();
 
         /*
         Find the first and last string in the array.
         Output them to td#firstLast
          */
+        let first = myArray[0];
+        let count = myArray.length;
+        let last = myArray[count - 1];
+
+        $("td#firstLast").text(first + " " + last);
 
 
         /*
@@ -107,6 +112,7 @@ $(document).ready(function () {
          */
 
 
+
         /*
         Find the longest string in the array.
         Output it to td#longName
@@ -117,6 +123,7 @@ $(document).ready(function () {
         Find all of the strings that do not contain the letter 's'.
         Output them to td#noEss
          */
+
 
 
         /*

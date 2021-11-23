@@ -1,3 +1,56 @@
+function arrayHunt() {
+    // Contains the selected array of strings
+    let myArray = getSelectedArray();
+
+    /*
+    Find the first and last string in the array.
+    Output them to td#firstLast
+     */
+    let first = myArray[0];
+    let count = myArray.length;
+    let last = myArray[count - 1];
+
+    $("td#firstLast").append(first + " " + last);
+
+
+    /*
+    Find the first string that contains an 'n'.
+    Output it to td#firstEnn
+     */
+
+
+    /*
+    Find all of the strings with less than 6 characters.
+    Output them to td#lessThanSix
+     */
+
+
+    /*
+    Find the longest string in the array.
+    Output it to td#longName
+     */
+
+
+    /*
+    Find all of the strings that do not contain the letter 's'.
+    Output them to td#noEss
+     */
+
+
+    /*
+    Output all of the strings, but with all of their vowels
+    in uppercase, to td#upperVowels
+     */
+
+
+    /*
+    Output all of the strings in reverse order and separated by
+    ' - ' to td#reverseDash
+     */
+
+
+}
+
 $(document).ready(function () {
     $("#imageSet").on("change", showAllImages);
     $("#huntButton").on("click", arrayHunt);
@@ -85,57 +138,4 @@ function getSelectedArray() {
         return dinosaurs;
     else if (selection === "aussie")
         return australianAnimals;
-}
-
-function arrayHunt() {
-    // Contains the selected array of strings
-    let myArray = getSelectedArray();
-
-    /*
-    Find the first and last string in the array.
-    Output them to td#firstLast
-     */
-    let first = myArray[0];
-    let count = myArray.length;
-    let last = myArray[count - 1];
-
-    $("td#firstLast").append(first + " " + last);
-
-
-    /*
-    Find the first string that contains an 'n'.
-    Output it to td#firstEnn
-     */
-
-
-    /*
-    Find all of the strings with less than 6 characters.
-    Output them to td#lessThanSix
-     */
-
-
-    /*
-    Find the longest string in the array.
-    Output it to td#longName
-     */
-
-
-    /*
-    Find all of the strings that do not contain the letter 's'.
-    Output them to td#noEss
-     */
-
-
-    /*
-    Output all of the strings, but with all of their vowels
-    in uppercase, to td#upperVowels
-     */
-
-
-    /*
-    Output all of the strings in reverse order and separated by
-    ' - ' to td#reverseDash
-     */
-
-
 }

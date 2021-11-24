@@ -1,7 +1,4 @@
-function arrayHunt() {
-    // Contains the selected array of strings
-    let myArray = getSelectedArray();
-
+function arrayHunt(myArray) {
     /*
     Find the first and last string in the array.
     Output them to td#firstLast
@@ -52,8 +49,14 @@ function arrayHunt() {
 }
 
 $(document).ready(function () {
-    $("#imageSet").on("change", showAllImages);
-    $("#huntButton").on("click", arrayHunt);
+    $("#imageSet").on("change", function() {
+        clearAnswers();
+        showAllImages();
+    });
+    $("#huntButton").on("click", function () {
+        clearAnswers();
+        arrayHunt(getSelectedArray());
+    });
 
     showAllImages();
 });
@@ -71,42 +74,29 @@ let dinosaurs = ["ankylosaurus", "brachiosaurus", "dilophosaurus",
 let solarSystem = ["earth", "jupiter", "luna", "mars", "mercury",
     "neptune", "saturn", "sol", "uranus", "venus"];
 
+function clearAnswers() {
+    $("td:last-child").empty();
+}
+
 function showAllImages() {
     // What image set was selected? This is the directory name
     let directoryName = $("#imageSet").val();
     // Based on the selection, use the correct array
-    let arrayOfImagesNames = getSelectedArray();
+    let arrayOfImagesNames = shuffle(getSelectedArray());
 
     // Empty out any children from the div
     let imageDiv = $("#originalArray").empty();
 
-    // Make two rows of images, half in each row
-    let half = arrayOfImagesNames.length / 2;
-    // How many images are in the current row?
-    let count = 0;
-    // The current <div class="row">
-    let row;
-
     for (let fileName of arrayOfImagesNames) {
-        // Time to make a new row?
-        if (count === 0 || count >= half) {
-            row = $("<div>").addClass("row");
-            imageDiv.append(row);
-            count = 0;
-        }
         // append a <figure> with the image and its caption
-        row.append(createImage(directoryName, fileName));
-        count++;
+        imageDiv.append(createImage(directoryName, fileName));
     }
 
 }
 
 function createImage(directory, fileName) {
-    // Create a div with a Bootstrap class
-    let col = $("<div>").addClass("col");
     // Create a figure (can have a caption)
     let figure = $("<figure>").addClass("figure");
-    col.append(figure);
 
     // Create the image itself
     let img = $("<img>");
@@ -121,7 +111,7 @@ function createImage(directory, fileName) {
         .addClass("figure-caption text-center");
     figure.append(caption);
 
-    return col;
+    return figure;
 }
 
 function getSelectedArray() {
@@ -138,4 +128,19 @@ function getSelectedArray() {
         return dinosaurs;
     else if (selection === "aussie")
         return australianAnimals;
+}
+
+function shuffle(array) {
+    // Shuffle algorithm from https://javascript.info/task/shuffle
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+        // swap elements array[i] and array[j]
+        // we use "destructuring assignment" syntax to achieve that
+        // same can be written as:
+        // let t = array[i]; array[i] = array[j]; array[j] = t
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
 }

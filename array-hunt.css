@@ -15,9 +15,12 @@ h1, figure {
 
 figure {
     font-size: 25px;
+    padding-right: 15px;
 }
 
 button {
     margin-bottom: 15px;
 }
+
+
 
